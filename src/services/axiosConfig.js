@@ -1,41 +1,20 @@
-// import axios from "axios";
-
-// export const apiclient = axios.create({
-//     baseURL: "https://cinescope-backend-20p2.onrender.com",
-//     withCredentials: true,
-//     headers: {
-//         "Content-Type": "application/json"
-//     }
-
-// })
-// apiclient.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("token")
-
-
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`
-//   }
-
-//   return config
-// })
-
 import axios from "axios";
 
 export const apiclient = axios.create({
-  baseURL: "https://cinescope-backend-1.onrender.com",
-  withCredentials: true,
-  headers: {
-    "Content-Type": "application/json"
-  }
-});
+    baseURL: "https://cinescope-backend-1.onrender.com",
+    withCredentials: true,
+    headers: {
+        "Content-Type": "application/json"
+    }
 
-
+})
 apiclient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token")
+
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`
   }
 
-  return config;
-});
+  return config
+})

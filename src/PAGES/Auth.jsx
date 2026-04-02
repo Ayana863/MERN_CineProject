@@ -30,61 +30,57 @@ function Auth() {
     })
   }
 
+  
   const handleSubmit = async (e) => {
-    e.preventDefault()
+  e.preventDefault()
 
-    try {
-      // LOGIN
-      if (isLogin) {
-        const res = await userLogin({
-          email: formData.email,
-          password: formData.password,
-        })
+  try {
+    if (isLogin) {
+      const res = await userLogin({
+        email: formData.email,
+        password: formData.password,
+      })
 
-        //  Redux
-        dispatch(
-          setAuth({
-            user: res.user,
-            token: res.token,
-          })
-        )
+      console.log("LOGIN RESPONSE:", res) 
 
-        // LocalStorage
-        localStorage.setItem("token", res.token)
-        localStorage.setItem("user", JSON.stringify(res.user))
+      dispatch(setAuth({
+        user: res.user,
+        token: res.token,
+      }))
 
-        // Role redirect
-        if (res.user?.role === "admin") {
-          navigate("/admin-dashboard")
-        } else {
-          navigate("/home")
-        }
+      localStorage.setItem("token", res.token)
+      localStorage.setItem("user", JSON.stringify(res.user))
 
-        toast.success("Login successful")
+      // ROLE REDIRECT
+      if (res.user?.role === "admin") {
+        navigate("/admin-dashboard")
+      } else {
+        navigate("/home")
       }
 
-      // REGISTER
-      else {
-        if (formData.password !== formData.confirmPassword) {
-          toast.error("Passwords do not match")
-          return
-        }
-
-        await userRegister({
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          role: formData.role,
-        })
-
-        toast.success("Registered successfully")
-        navigate("/login")
+      toast.success("Login successful")
+    } else {
+      if (formData.password !== formData.confirmPassword) {
+        toast.error("Passwords do not match")
+        return
       }
 
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong")
+      await userRegister({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+      })
+
+      toast.success("Registered successfully")
+      navigate("/login")
     }
+
+  } catch (error) {
+    console.log(error)
+    toast.error(error.response?.data?.message || "Something went wrong")
   }
+}
 
   return (
     <>

@@ -3,7 +3,7 @@ import Footer from '../COMPONENTS/Footer'
 import UpcomingMovies from '../COMPONENTS/UpcomingMovie'
 import { useNavigate } from 'react-router-dom'
 import { FaFireFlameCurved } from "react-icons/fa6"
-import { BsFillChatSquareTextFill } from 'react-icons/bs'
+
 
 
 function Home() {
@@ -58,15 +58,7 @@ function Home() {
               Browse by Genre
             </button>
 
-            <button
-              onClick={() => navigate("/reviews")}
-              className='flex items-center gap-3 px-10 py-4
-                         bg-blue-600 text-white font-bold text-lg
-                         rounded-full hover:bg-blue-700 transition shadow-lg'
-            >
-              <BsFillChatSquareTextFill className='text-2xl text-yellow-400' />
-              Share Your Thoughts
-            </button>
+          
 
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react"
 import heroImg from '../assets/landingImg.jpg'
 import About from "../LandingPage/About"
-import Reviews from "../LandingPage/Reviews"
+
 import Footer from "../COMPONENTS/Footer"
 import { useNavigate } from "react-router-dom"
 
@@ -50,8 +50,7 @@ function LandingPage() {
         {/* About */}
         <About />
 
-        {/* Reviews */}
-        <Reviews />
+      
       </div>
 
       <Footer />
